@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Personal Page</title>
+</head>
+<body>
+<h1>Welcome, <span th:text="${userLogin}"></span></h1>
+<a href="/stocks">View Stocks</a>
+<h2>Your Portfolio</h2>
+<div th:if="${portfolio != null}">
+    <ul>
+        <li th:each="stock : ${portfolio}">
+            Stock ID: <span th:text="${stock.stockId}"></span> -
+            Quantity: <span th:text="${stock.quantity}"></span>
+        </li>
+    </ul>
+</div>
+<form action="/buy" method="post">
+    <input type="hidden" name="userId" th:value="${userId}">
+    <label>Stock ID:</label><br>
+    <input type="text" name="stockId" required><br>
+    <label>Quantity:</label><br>
+    <input type="number" name="qty" required><br>
+    <input type="submit" value="Buy">
+</form>
+<form action="/sell" method="post">
+    <input type="hidden" name="userId" th:value="${userId}">
+    <label>Stock ID:</label><br>
+    <input type="text" name="stockId" required><br>
+    <label>Quantity:</label><br>
+    <input type="number" name="qty" required><br>
+    <input type="submit" value="Sell">
+</form>
+</body>
+</html>

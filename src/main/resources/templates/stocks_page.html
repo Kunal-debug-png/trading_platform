@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
+  <title>Stocks</title>
+</head>
+<body>
+<h1>Stocks</h1>
+<ul>
+  <!-- Iterate over stocks and display each one -->
+  <th:block th:each="stock : ${stocks}">
+    <li>
+      <span th:text="${stock.sname}">Stock Name</span> -
+      <span th:text="${stock.sprice}">Stock Price</span>
+    </li>
+  </th:block>
+</ul>
+<form action="/addStock" method="post">
+  <label>Stock Name:</label><br>
+  <input type="text" name="sname" required><br>
+  <label>Stock Price:</label><br>
+  <input type="number" name="sprice" step="0.01" required><br>
+  <label>Username:</label><br>
+  <input type="text" name="username" required><br>
+  <input type="submit" value="Add Stock">
+</form>
+</body>
+</html>
